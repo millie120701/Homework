@@ -1,6 +1,6 @@
 ## Theory Questions for Task 2 ##
 
-# Question 1: What is got an example of?#
+# Question 1: What is got an example of? #
 Distribution version control system (DVCS)
 
 # Question 2: Name a code hosting service that uses Git #
