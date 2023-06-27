@@ -137,6 +137,9 @@ class User:
 
 
 name = input("What is your name?")
+if not name:
+    print("You must enter a name. Run again.")
+    exit()
 comp_shop = Shop("Tech Store")
 new_user = User(name, 100, comp_shop)
 comp_shop.items = {"xbox": {"price" :400, "stock": 1}, "controller": {"price": 25, "stock": 5}, "disk drive": {"price":16.99, "stock": 2}, "mouse": {"price":15.50, "stock": 3}}
