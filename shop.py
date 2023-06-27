@@ -149,7 +149,3 @@ comp_shop.exit_option(inpt)
 
 while True:
     new_user.make_selection()
-
-
-
-
