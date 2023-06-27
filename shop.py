@@ -66,15 +66,17 @@ class User:
             print(f"Invalid item, {response} could not be added to your basket") 
         elif self.shop.items[response]["stock"] == 0:
             print("Sorry this item is out of stock on the shelves")
-        elif response in self.shop.items.keys() and (self.shop.items[response]["price"] <= (self.balance - self.basketcost)):
+        elif response in self.shop.items.keys() and (self.shop.items[response]["price"] <= (self.balance)):
             self.basket.append(response)
-            self.basketcost += self.shop.items[response]["price"]
+            self.basketcost += self.shop.items[response]["price"] #25
+            self.balance -= self.shop.items[response]["price"] #75
             self.shop.items[response]["stock"] -= 1
-            print(f"{response} has been added to your basket. You have £ {round(self.balance - self.basketcost,2)} left to spend if you make these purchases")
+            print(f"{response} has been added to your basket. You have £ {self.balance} left to spend if you make these purchases")
+
         else:
             if self.attempts < 2:
-                self.attempts +=1
-                print(f"Item could not be added. Adding this item would make your basket £ {round((self.shop.items[response]['price']),2) - round((self.balance - self.basketcost),2)} greater than your balance")
+                self.attempts +=1 #balance 10, item 40 item - balance
+                print(f"Item could not be added. Adding this item would make your basket £ {round(self.shop.items[response]['price'] - self.balance,2)} greater than your balance")
                 print(f"To avoid being removed from the store, please do not attempt to make purchases with insufficient funds. You have {3-self.attempts} chances remaining.")
             else:
                 raise FundsError("3 attempts of purchases with insufficient funds.")
@@ -84,7 +86,8 @@ class User:
             try:
                 response = input("Which item do you want to remove?")
                 self.basket.remove(response)
-                self.balance -= self.shop.items[response]["price"]
+                self.balance += self.shop.items[response]["price"]
+                self.shop.items[response]["stock"] += 1
                 print(f"{response} has been removed! Your basket is now {self.basket}")
             except ValueError:
                 print("Item is not in your basket. The item could not be removed.")
@@ -131,7 +134,7 @@ class User:
   
             
 
-"""
+
 
 name = input("What is your name?")
 comp_shop = Shop("Tech Store")
@@ -140,10 +143,13 @@ comp_shop.items = {"xbox": {"price" :400, "stock": 1}, "controller": {"price": 2
 
 comp_shop.add_user(new_user)
 comp_shop.greet_user()
+inpt = input("Do you want to exit? Respond with y/n")
+comp_shop.exit_option(inpt)
+
 
 while True:
     new_user.make_selection()
 
-"""
+
 
 
