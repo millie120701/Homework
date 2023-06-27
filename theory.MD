@@ -1,4 +1,4 @@
-## Theory Questions for Task 2 ##
+# Theory Questions for Task 2 #
 
 # Question 1: What is got an example of? #
 Distribution version control system (DVCS)
