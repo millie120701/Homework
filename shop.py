@@ -68,10 +68,10 @@ class User:
             print("Sorry this item is out of stock on the shelves")
         elif response in self.shop.items.keys() and (self.shop.items[response]["price"] <= (self.balance)):
             self.basket.append(response)
-            self.basketcost += self.shop.items[response]["price"] #25
-            self.balance -= self.shop.items[response]["price"] #75
+            self.basketcost += self.shop.items[response]["price"] 
+            self.balance -= self.shop.items[response]["price"] 
             self.shop.items[response]["stock"] -= 1
-            print(f"{response} has been added to your basket. You have £ {self.balance} left to spend if you make these purchases")
+            print(f"{response} has been added to your basket. You have £ {round(self.balance,2)} left to spend if you make these purchases")
 
         else:
             if self.attempts < 2:
