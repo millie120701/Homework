@@ -84,6 +84,7 @@ class User:
             try:
                 response = input("Which item do you want to remove?")
                 self.basket.remove(response)
+                self.balance -= self.shop.items[response]["price"]
                 print(f"{response} has been removed! Your basket is now {self.basket}")
             except ValueError:
                 print("Item is not in your basket. The item could not be removed.")
