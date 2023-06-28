@@ -48,7 +48,7 @@ class User:
         try:
             amount = round(float(response),2)
             self.balance += amount
-            print(f"Your balance is now £ {self.balance}")
+            print(f"Your balance is now £ {round(self.balance,2)}")
         except ValueError:
             print("Invalid input. Must be in numerical format with no special characters")
 
@@ -68,8 +68,8 @@ class User:
             print("Sorry this item is out of stock on the shelves")
         elif response in self.shop.items.keys() and (self.shop.items[response]["price"] <= (self.balance)):
             self.basket.append(response)
-            self.basketcost += self.shop.items[response]["price"] 
-            self.balance -= self.shop.items[response]["price"] 
+            self.basketcost += self.shop.items[response]["price"]
+            self.balance -= self.shop.items[response]["price"]
             self.shop.items[response]["stock"] -= 1
             print(f"{response} has been added to your basket. You have £ {round(self.balance,2)} left to spend if you make these purchases")
 
@@ -88,7 +88,7 @@ class User:
                 self.basket.remove(response)
                 self.balance += self.shop.items[response]["price"]
                 self.shop.items[response]["stock"] += 1
-                print(f"{response} has been removed! Your basket is now {self.basket}")
+                print(f"{response} has been removed! Your basket is now {self.basket}, and your balance is {round(self.balance,2)}")
             except ValueError:
                 print("Item is not in your basket. The item could not be removed.")
         else:
@@ -152,3 +152,5 @@ comp_shop.exit_option(inpt)
 
 while True:
     new_user.make_selection()
+
+
